@@ -1,23 +1,81 @@
 <!DOCTYPE HTML>
 <html>
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
+</link>
+<style>
+  .div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 
-<head>
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
-  </link>
-</head>
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-<body>
+  .br {
+    margin-bottom: 20px;
+  }
+
+  .space-image {
+    width: 10%;
+  }
+
+  .space-circle {
+    width: 18%;
+  }
+
+  .circle-start {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: green;
+    margin-right: 15px;
+  }
+
+  .circle-stop {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border-color: green;
+    margin-right: 15px;
+  }
+</style>
+<div class="container">
   <div class='jumbotron'>
     <h1 class='text-center'>Automação Cafeteira CIT</h1>
-    <h2 class='text-center'>Quanto de café você quer?</h2>
+    <h2 class='text-center'>COM WEMOS ESP8266</h2>
   </div>
-  <div class='col-md-6'>
-    <a href=\"/LED=OFF\"> <img src="./assets/images/bule12.png" alt="2 cafés" width="200px" height="200px"> </a>
+  <div class="div">
+    <div class="column">
+      <img width="80" height="80"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
+      <div class="circle-start"></div>
+    </div>
+    <div class="space-image"></div>
+    <div class="column">
+      <img width="80" height="80"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
+      <div class="circle-start"></div>
+    </div>
   </div>
-  <div class='col-md-6'>
-    <a href=\"/LED=OFF\"> <img src="./assets/images/bule11.png" alt="2 cafés" width="200px" height="200px"> </a>
+  <div class="br"></div>
+  <div class="container">
+    <div class="alert alert-success" role="alert">
+      Seu café está saindo...
+    </div>
+    <div class="alert alert-warning" role="alert">
+      Água insuficiente para 4 chícaras, aceita 2?
+    </div>
+    <div aria-disabled="true" class="alert alert-danger" role="alert">
+      Água insuficiente para fazer café
+    </div>
   </div>
-</body>
+</div>
 
 </html>
