@@ -1,9 +1,18 @@
 <!DOCTYPE HTML>
 <html>
-<meta charset='utf-8' />
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
-</link>
+  <head>
+    <meta charset='utf-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title> Cafeteira </title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
+    </link>
+  </head>
+
+  <body>
+
+  </body>
+
+
 <style>
   .div {
     display: flex;
@@ -49,19 +58,29 @@
 <div class="container">
   <div class='jumbotron'>
     <h1 class='text-center'>Automação Cafeteira CIT</h1>
-    <h2 class='text-center'>COM WEMOS ESP8266</h2>
+    <h2 class='text-center'>Quantas xícaras quer fazer?</h2>
   </div>
   <div class="div">
     <div class="column">
-      <img width="80" height="80"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
-      <div class="circle-start"></div>
+      <a href=\"/LED=OFF\">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" 
+        />
+      </a>
+      <!-- <div class="circle-start"></div>  
+      
+        Falta a variável que indica quanto tem de água e tem que fazer a verificação ao clicar no botão
+        valor_high ; valor_low
+      -->
     </div>
     <div class="space-image"></div>
     <div class="column">
-      <img width="80" height="80"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
-      <div class="circle-start"></div>
+      <a href=\"/LED=ON\">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" 
+        />
+      </a>
+      <!-- <div class="circle-start"></div> --> 
     </div>
   </div>
   <div class="br"></div>
