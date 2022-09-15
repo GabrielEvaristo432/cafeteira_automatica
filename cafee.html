@@ -53,29 +53,55 @@
   </div>
   <div class="div">
     <div class="column">
-      <img width="80" height="80"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
-      <div class="circle-start"></div>
+      <a onclick="fazerDuasXicaras();">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
+        <div class="circle-start"></div>
+      </a>
     </div>
     <div class="space-image"></div>
     <div class="column">
-      <img width="80" height="80"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
-      <div class="circle-start"></div>
+      <a onclick="fazerQuatroXicaras();">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
+        <div class="circle-start"></div>
+      </a>
     </div>
   </div>
   <div class="br"></div>
   <div class="container">
-    <div class="alert alert-success" role="alert">
+    <div id="success" class="alert alert-success" style="display:none;" role="alert">
       Seu café está saindo...
     </div>
-    <div class="alert alert-warning" role="alert">
-      Água insuficiente para 4 chícaras, aceita 2?
+    <div id="semAgua" class="alert alert-success" style="display:none;" role="alert">
+      Água insuficiente na cafeteira
     </div>
-    <div aria-disabled="true" class="alert alert-danger" role="alert">
-      Água insuficiente para fazer café
+    <div id="doisInstead" class="alert alert-warning" style="display:none;" role="alert">
+      <h3>Água insuficiente para 4 xícaras, aceita 2?</h3>
+      <button onclick="fazerDuasXicaras();">SIM</button>
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  var sensorDown = 'LOW'
+  var sensorUp = 'H'
+  function fazerDuasXicaras() {
+    if (sensorDown === 'LOW') {
+      document.getElementById("success").style.display = 'inline';
+    }
+    else {
+      document.getElementById("semAgua").style.display = 'inline';
+    }
+  }
+  function fazerQuatroXicaras() {
+    if (sensorUp === 'LOW') {
+      document.getElementById("success").style.display = 'inline';
+    } else if (sensorDown === 'LOW') {
+      document.getElementById("doisInstead").style.display = 'inline';
+    } else {
+      document.getElementById("semAgua").style.display = 'inline';
+    }
+  }
+</script>
 
 </html>
