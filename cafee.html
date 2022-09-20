@@ -1,18 +1,9 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <meta charset='utf-8' />
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <title> Cafeteira </title>
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
-    </link>
-  </head>
-
-  <body>
-
-  </body>
-
-
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css' rel='stylesheet'>
+</link>
 <style>
   .div {
     display: flex;
@@ -58,10 +49,23 @@
 <div class="container">
   <div class='jumbotron'>
     <h1 class='text-center'>Automação Cafeteira CIT</h1>
-    <h2 class='text-center'>Quantas xícaras quer fazer?</h2>
+    <h2 class='text-center'>COM WEMOS ESP8266</h2>
   </div>
   <div class="div">
     <div class="column">
+      <a onclick="fazerDuasXicaras();">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
+        <div class="circle-start"></div>
+      </a>
+    </div>
+    <div class="space-image"></div>
+    <div class="column">
+      <a onclick="fazerQuatroXicaras();">
+        <img width="80" height="80"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
+        <div class="circle-start"></div>
+      </a>
     </div>
   </div>
   <div class="br"></div>
@@ -79,7 +83,7 @@
   </div>
 </div>
 <script type="text/javascript">
-  var sensorDown = 'LOW'
+  var sensorDown = 'hf'
   var sensorUp = 'H'
   function fazerDuasXicaras() {
     if (sensorDown === 'LOW') {
