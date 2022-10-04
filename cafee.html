@@ -50,63 +50,200 @@
       border-color: green;
       margin-right: 15px;
     }
+
+    /* The Modal (background) */
+    .modal {
+      display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%;
+      /* Full width */
+      height: 100%;
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.4);
+      /* Black w/ opacity */
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto;
+      /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      /* Could be more or less, depending on screen size */
+    }
+
+    /* The Close Button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .img {
+      cursor: pointer;
+    }
   </style>
   <div class="container">
     <div class='jumbotron'>
       <h1 class='text-center'>Automação Cafeteira CIT</h1>
-      <h2 class='text-center'>COM WEMOS ESP8266</h2>
     </div>
     <div class="div">
       <div class="column">
-        <a onclick="fazerDuasXicaras();">
+        <a class="img" onclick="fazerDuasXicaras();">
           <img width="80" height="80"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-3A4qUI0jxE1LqBSc0CNmKCf0b1hBsFNCT-qqqx9f_9fInZ6yotYzYapINgXDYrGzz54&usqp=CAU" />
-          <div class="circle-start"></div>
+          <!-- <div class="circle-start"></div> -->
         </a>
       </div>
       <div class="space-image"></div>
       <div class="column">
-        <a onclick="fazerQuatroXicaras();">
+        <a class="img" onclick="fazerQuatroXicaras();">
           <img width="80" height="80"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSl76eucteyQtdV3D4x3JQizI-GAwtCbSjGKp-SBUlE7GwE39mbnt7BmSYPtMYjIowwc0&usqp=CAU" />
-          <div class="circle-start"></div>
+          <!-- <div class="circle-start"></div> -->
         </a>
       </div>
     </div>
     <div class="br"></div>
-    <div class="container">
-      <div id="success" class="alert alert-success" style="display:none;" role="alert">
-        Seu café está saindo...
+    <div class="container" style="display: flex; width: 100%;">
+      <div id="success" class="alert alert-success" style="display:none; width: 100%;" role="alert">
+        <h3>Seu café está saindo...</h3>
       </div>
-      <div id="semAgua" class="alert alert-success" style="display:none;" role="alert">
-        Água insuficiente na cafeteira
+      <div id="semAgua" class="alert alert-success" style="display:none; width: 100%;" role="alert">
+        <h3>Água insuficiente na cafeteira</h3>
       </div>
-      <div id="doisInstead" class="alert alert-warning" style="display:none;" role="alert">
+      <div id="doisInstead" class="alert alert-warning" style="display:none; width: 100%;" role="alert">
         <h3>Água insuficiente para 4 xícaras, aceita 2?</h3>
         <button onclick="fazerDuasXicaras();">SIM</button>
       </div>
     </div>
+    <button id="botaoDesligarCafereira" onclick="reloadPage();">Open Modal</button>
+    <div id="desligarCafeteira" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Seu café está pronto!</p>
+      </div>
+    </div>
+    <div id="cafeteiraLigada" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Café em produção! Aguarde...</p>
+      </div>
+    </div>
   </div>
   <script type="text/javascript">
-    var sensorDown = 'hf'
-    var sensorUp = 'H'
+    var valor_low = 0
+    var valor_high = 1
     function fazerDuasXicaras() {
-      if (sensorDown === 'LOW') {
+      if (verificarEstado() == 'inline') {
+        modalCafeteiraLigada.style.display = "block";
+        return
+      }
+
+      if (valor_low === 0) {
         document.getElementById("success").style.display = 'inline';
+        document.getElementById("doisInstead").style.display = 'none';
+        document.getElementById("semAgua").style.display = 'none';
       }
       else {
         document.getElementById("semAgua").style.display = 'inline';
+        document.getElementById("doisInstead").style.display = 'none';
+        document.getElementById("success").style.display = 'none';
       }
     }
     function fazerQuatroXicaras() {
-      if (sensorUp === 'LOW') {
+      if (verificarEstado() == 'inline') {
+        modalCafeteiraLigada.style.display = "block";
+        return
+      }
+      if (valor_high === 0) {
         document.getElementById("success").style.display = 'inline';
-      } else if (sensorDown === 'LOW') {
+        document.getElementById("doisInstead").style.display = 'none';
+        document.getElementById("semAgua").style.display = 'none';
+      } else if (valor_low === 0) {
         document.getElementById("doisInstead").style.display = 'inline';
+        document.getElementById("success").style.display = 'none';
+        document.getElementById("semAgua").style.display = 'none';
       } else {
         document.getElementById("semAgua").style.display = 'inline';
+        document.getElementById("doisInstead").style.display = 'none';
+        document.getElementById("success").style.display = 'none';
       }
     }
+    function reloadPage() {
+      window.location.reload(false)
+    }
+    function verificarEstado() {
+      return document.getElementById("success").style.display
+    }
+
+    // Get the modal
+    var modalDesligarCafeteira = document.getElementById("desligarCafeteira");
+    var modalCafeteiraLigada = document.getElementById("cafeteiraLigada");
+    // Get the button that opens the modal
+    var btnDeslCafeteira = document.getElementById("botaoDesligarCafereira");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // When the user clicks on the button, open the modal
+    btnDeslCafeteira.onclick = function () {
+      modalDesligarCafeteira.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modalDesligarCafeteira.style.display = "none";
+      modalCafeteiraLigada.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modalDesligarCafeteira) {
+        modalDesligarCafeteira.style.display = "none";
+      }
+      if (event.target == modalCafeteiraLigada) {
+        modalCafeteiraLigada.style.display = "none";
+      }
+    }
+  // // Get today's date and time
+  // var now = new Date().getTime();
+  // // Set the date we're counting down to
+  // var countDownDate = now
+  // countDownDate.setMinutes(countDownDate.getMinutes() + 2); // timestamp
+  // countDownDate = new Date(countDownDate); // Date object
+
+  // // Update the count down every 1 second
+  // var x = setInterval(function () {
+
+  //   // Find the distance between now and the count down date
+  //   var distance = countDownDate - now;
+
+  //   // Time calculations for days, hours, minutes and seconds
+  //   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  //   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  //   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  //   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  //   // Display the result in the element with id="demo"
+  //   document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  //     + minutes + "m " + seconds + "s ";
+
+  //   // If the count down is finished, write some text
+  //   if (distance < 0) {
+  //     clearInterval(x);
+  //     document.getElementById("demo").innerHTML = "EXPIRED";
+  //   }
+  // }, 1000);
   </script>
 </body>
 
